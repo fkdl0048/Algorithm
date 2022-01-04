@@ -7,8 +7,8 @@ int ans = 1000000000;
 int arr[MAX][MAX] = {0};
 bool visited[MAX];
 
-void dfs(int cnt, int num){
-	if(cnt == n/2 || cnt == n/2+1){
+void dfs(int cnt){
+	if(cnt >= n){
 		int team_start = 0;
 		int team_link = 0;
 		int temp;
@@ -16,7 +16,7 @@ void dfs(int cnt, int num){
 			for (int j = 1; j <= n; j++){
 				if(visited[i] == true && visited[j] == true)
 					team_start += arr[i][j];
-				if(visited[i] == false && visited[j] == false)
+				else if(visited[i] == false && visited[j] == false)
 					team_link += arr[i][j];
 			}
 		}
@@ -26,10 +26,12 @@ void dfs(int cnt, int num){
 
 		return;
 	}
-	for (int i = num; i <= n; i++){
-		visited[i] = true;
-		dfs(cnt + 1, i + 1);
-		visited[i] = false;
+	for (int i = cnt; i <= n; i++){
+		if(!visited[i]){
+			visited[i] = true;
+			dfs(i);
+			visited[i] = false;
+		}	
 	}
 }
 
@@ -41,7 +43,7 @@ int main(){
 		}
 	}
 	
-	dfs(0, 1);
+	dfs(1);
 
 	cout << ans;
 
