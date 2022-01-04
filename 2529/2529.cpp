@@ -11,9 +11,11 @@ vector<string> ans;
 
 bool check(string num){
 	for (int i = 0; i < k; i++){
-		if(c[i] == '>' || c[i] == '<'){
+		if(c[i] == '>'){
 			if(num[i] < num[i + 1])
 				return false;
+		}
+		if(c[i] == '<'){
 			if(num[i] > num[i + 1])
 				return false;
 		}
@@ -43,7 +45,7 @@ int main()
 	for (int i = 0; i < k; i++){
 		cin >> c[i];
 	}
-
+	
 	dfs(0,"");
 	sort(ans.begin(), ans.end());
 
