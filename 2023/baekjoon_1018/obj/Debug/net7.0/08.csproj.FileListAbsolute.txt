@@ -1,0 +1,15 @@
+C:\Users\fkdl0\Documents\Algorithm\2023\08\bin\Debug\net7.0\08.exe
+C:\Users\fkdl0\Documents\Algorithm\2023\08\bin\Debug\net7.0\08.deps.json
+C:\Users\fkdl0\Documents\Algorithm\2023\08\bin\Debug\net7.0\08.runtimeconfig.json
+C:\Users\fkdl0\Documents\Algorithm\2023\08\bin\Debug\net7.0\08.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\08\bin\Debug\net7.0\08.pdb
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.csproj.AssemblyReference.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.AssemblyInfoInputs.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.AssemblyInfo.cs
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.csproj.CoreCompileInputs.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\refint\08.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.pdb
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\08.genruntimeconfig.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\08\obj\Debug\net7.0\ref\08.dll
