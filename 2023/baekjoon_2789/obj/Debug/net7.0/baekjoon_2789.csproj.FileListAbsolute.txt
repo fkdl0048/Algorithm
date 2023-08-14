@@ -1,0 +1,15 @@
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\bin\Debug\net7.0\baekjoon_2789.exe
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\bin\Debug\net7.0\baekjoon_2789.deps.json
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\bin\Debug\net7.0\baekjoon_2789.runtimeconfig.json
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\bin\Debug\net7.0\baekjoon_2789.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\bin\Debug\net7.0\baekjoon_2789.pdb
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.csproj.AssemblyReference.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.AssemblyInfoInputs.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.AssemblyInfo.cs
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.csproj.CoreCompileInputs.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\refint\baekjoon_2789.dll
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.pdb
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\baekjoon_2789.genruntimeconfig.cache
+C:\Users\fkdl0\Documents\Algorithm\2023\baekjoon_2789\obj\Debug\net7.0\ref\baekjoon_2789.dll
