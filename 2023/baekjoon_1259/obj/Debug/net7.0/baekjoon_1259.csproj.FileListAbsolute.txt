@@ -1,0 +1,15 @@
+D:\Algorithm\2023\baekjoon_1259\bin\Debug\net7.0\baekjoon_1259.exe
+D:\Algorithm\2023\baekjoon_1259\bin\Debug\net7.0\baekjoon_1259.deps.json
+D:\Algorithm\2023\baekjoon_1259\bin\Debug\net7.0\baekjoon_1259.runtimeconfig.json
+D:\Algorithm\2023\baekjoon_1259\bin\Debug\net7.0\baekjoon_1259.dll
+D:\Algorithm\2023\baekjoon_1259\bin\Debug\net7.0\baekjoon_1259.pdb
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.csproj.AssemblyReference.cache
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.GeneratedMSBuildEditorConfig.editorconfig
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.AssemblyInfoInputs.cache
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.AssemblyInfo.cs
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.csproj.CoreCompileInputs.cache
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.dll
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\refint\baekjoon_1259.dll
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.pdb
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\baekjoon_1259.genruntimeconfig.cache
+D:\Algorithm\2023\baekjoon_1259\obj\Debug\net7.0\ref\baekjoon_1259.dll
