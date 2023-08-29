@@ -1,0 +1,15 @@
+D:\Algorithm\2023\baekjoon_1654\bin\Debug\net7.0\baekjoon_1654.exe
+D:\Algorithm\2023\baekjoon_1654\bin\Debug\net7.0\baekjoon_1654.deps.json
+D:\Algorithm\2023\baekjoon_1654\bin\Debug\net7.0\baekjoon_1654.runtimeconfig.json
+D:\Algorithm\2023\baekjoon_1654\bin\Debug\net7.0\baekjoon_1654.dll
+D:\Algorithm\2023\baekjoon_1654\bin\Debug\net7.0\baekjoon_1654.pdb
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.csproj.AssemblyReference.cache
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.GeneratedMSBuildEditorConfig.editorconfig
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.AssemblyInfoInputs.cache
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.AssemblyInfo.cs
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.csproj.CoreCompileInputs.cache
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.dll
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\refint\baekjoon_1654.dll
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.pdb
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\baekjoon_1654.genruntimeconfig.cache
+D:\Algorithm\2023\baekjoon_1654\obj\Debug\net7.0\ref\baekjoon_1654.dll
