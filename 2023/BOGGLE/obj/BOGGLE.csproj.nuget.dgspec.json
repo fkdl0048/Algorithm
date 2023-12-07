@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Algorithm\\2023\\baekjoon_1018\\08.csproj": {}
+    "D:\\Algorithm\\2023\\BOGGLE\\BOGGLE.csproj": {}
   },
   "projects": {
-    "D:\\Algorithm\\2023\\baekjoon_1018\\08.csproj": {
+    "D:\\Algorithm\\2023\\BOGGLE\\BOGGLE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Algorithm\\2023\\baekjoon_1018\\08.csproj",
-        "projectName": "08",
-        "projectPath": "D:\\Algorithm\\2023\\baekjoon_1018\\08.csproj",
+        "projectUniqueName": "D:\\Algorithm\\2023\\BOGGLE\\BOGGLE.csproj",
+        "projectName": "BOGGLE",
+        "projectPath": "D:\\Algorithm\\2023\\BOGGLE\\BOGGLE.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Algorithm\\2023\\baekjoon_1018\\obj\\",
+        "outputPath": "D:\\Algorithm\\2023\\BOGGLE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"
