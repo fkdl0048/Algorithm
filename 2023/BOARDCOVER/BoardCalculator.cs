@@ -9,7 +9,7 @@ namespace BOARDCOVER
             _board = board;
         }
 
-        public (int y, int x) GetFirstBlock()
+        private (int y, int x) GetFirstBlock()
         {
             for (var i = 0; i < _board.Hight; i++)
             {
