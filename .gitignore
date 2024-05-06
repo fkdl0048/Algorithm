@@ -1,0 +1,11 @@
+# rider
+.idea/
+
+# Visual Studio 2015 user specific files
+.vs/
+
+# 2021
+./2021
+
+# 2023
+./2023
