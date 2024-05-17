@@ -26,4 +26,5 @@ int main(){
         cout << cnt[i] << ' ';
     }
     cout << '\n';
+    
 }
