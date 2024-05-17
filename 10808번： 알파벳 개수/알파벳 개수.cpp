@@ -6,7 +6,7 @@
 /*   By: fkdl4878 <boj.kr/u/fkdl4878>                +#+    +#+          +#+  */
 /*                                                  +#+      +#+        +#+   */
 /*   https://boj.kr/10808                          #+#        #+#      #+#    */
-/*   Solved: 2024/05/17 13:54:35 by fkdl4878      ###          ###   ##.kr    */
+/*   Solved: 2024/05/17 14:15:52 by fkdl4878      ###          ###   ##.kr    */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ using namespace std;
 int main(){
     string s;
     cin >> s;
-    int cnt[26] = {0,};
-    for (int i = 0; i < s.size(); i++)
+    vector<int> v(26);
+    for (char c : s)
     {
-        cnt[s[i] - 'a']++;
+        v[c - 'a']++;
     }
     for (int i = 0; i < 26; i++)
     {
-        cout << cnt[i] << ' ';
+        cout << v[i] << ' ';
     }
-    cout << '\n';
-    
 }
