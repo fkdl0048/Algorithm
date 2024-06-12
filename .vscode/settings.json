@@ -2,5 +2,6 @@
     "files.associations": {
         "*.yarnproject": "jsonc",
         "iostream": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }
