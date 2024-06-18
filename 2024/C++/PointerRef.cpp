@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
-int main()
+it 
 {
     int a = 10;
     int *b = &a;
