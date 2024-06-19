@@ -17,16 +17,19 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
+    int p1, p2;
+    vector<pair<int, int>> s;
 
-    vector<pair<int, int>> v(n);
-    for (int i = 0; i < n; i++){
-        cin >> v[i].first >> v[i].second;
+    for (int i = 0; i < n; i++)
+    {
+        cin >> p1 >> p2;
+        s.push_back(make_pair(p1, p2));
     }
 
-    sort(v.begin(), v.end());
-    for (int i = 0; i < n; i++){
-        cout << v[i].first << ' ' << v[i].second << '\n';
-    }
+    sort(s.begin(), s.end());
 
-    return 0;
+    for(auto p : s)
+    {
+        cout << p.first << " " << p.second << '\n';
+    }
 }
