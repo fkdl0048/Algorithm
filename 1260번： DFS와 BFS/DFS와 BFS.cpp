@@ -10,81 +10,135 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <stack>
-#include <algorithm>
+// 그래프의 대표적인 문제로 DFS, BFS 풀이다.
+// 정점 N과 간선의 개수 M, 탐색 시작 정점 V
+// M개의 줄에 간선을 연결하는 두 정점이 주어짐
+// 즉, 정점은 N개로 N이 4라면 1, 2, 3, 4가 존재
+
+#include <bits/stdc++.h>
 
 using namespace std;
 
-void dfs(vector<vector<int>>& graph, vector<bool>& visited, int start) {
-    stack<int> s;
-    s.push(start);
-    visited[start] = true;
-    cout << start << " ";
+class Node
+{
+public:
+    Node(int n) : n(n) {}
+    vector<Node*> next;
+    int n;
+};
 
-    while (!s.empty()) {
-        int current = s.top();
-        s.pop();
+class Graph
+{
+public:
+    Graph(int n, int m) : N(n), M(m) {}
 
-        for (int i = 0; i < graph[current].size(); ++i) {
-            int next = graph[current][i];
-            if (!visited[next]) {
-                cout << next << " ";
-                visited[next] = true;
-                s.push(current);
-                s.push(next);
-                break;
+    void makeGraph()
+    {
+        int x, y;
+        nodeV = vector<Node>();
+
+        for (int i = 0; i < N; i++)
+        {
+            nodeV.push_back(Node(i + 1));
+        }
+        
+        for (int i = 0; i < M; i++)
+        {
+            cin >> x >> y;
+            nodeV[x - 1].next.push_back(&nodeV[y - 1]);
+            nodeV[y - 1].next.push_back(&nodeV[x - 1]);
+        }
+
+        for (int i = 0; i < N; i++)
+        {
+            sort(nodeV[i].next.begin(), nodeV[i].next.end(), [](Node* a, Node* b)
+            {
+                return a->n < b->n;
+            });
+        }
+        
+    }
+
+    vector<int> dfs(int v)
+    {
+        vector<int> result;
+        vector<bool> visited(N, false);
+        stack<Node*> s;
+
+        s.push(&nodeV[v - 1]);
+
+        while (!s.empty())
+        {
+            Node* node = s.top();
+            s.pop();
+
+            if (!visited[node->n - 1])
+            {
+                visited[node->n - 1] = true;
+                result.push_back(node->n);
+
+                for(auto it = node->next.rbegin(); it != node->next.rend(); ++it)
+                {
+                    if (!visited[(*it)->n - 1])
+                        s.push(*it);
+                }
             }
         }
+
+        return result;
     }
-}
 
-void bfs(vector<vector<int>>& graph, vector<bool>& visited, int start) {
-    queue<int> q;
-    q.push(start);
-    visited[start] = true;
+    vector<int> bfs(int v)
+    {
+        vector<int> result;
+        vector<bool> visited(N, false);
+        queue<Node*> q;
 
-    while (!q.empty()) {
-        int current = q.front();
-        q.pop();
-        cout << current << " ";
+        q.push(&nodeV[v - 1]);
+        
+        while (!q.empty())
+        {
+            Node* node = q.front();
+            q.pop();
 
-        for (int i = 0; i < graph[current].size(); ++i) {
-            int next = graph[current][i];
-            if (!visited[next]) {
-                visited[next] = true;
-                q.push(next);
+            if (!visited[node->n - 1])
+            {
+                visited[node->n - 1] = true;
+                result.push_back(node->n);
+                
+                for (const auto nextNode : node->next)
+                {
+                    if (!visited[nextNode->n - 1])
+                        q.push(nextNode);
+                }
             }
         }
+        
+        return result;
     }
-}
 
-int main() {
+private:
+    int N;
+    int M;
+    vector<Node> nodeV;
+};
+
+
+int main(){
     int n, m, v;
+
     cin >> n >> m >> v;
+    Graph graph(n, m);
+    graph.makeGraph();
 
-    vector<vector<int>> graph(n + 1);
-    vector<bool> visited(n + 1, false);
+    vector<int> dfsRes = graph.dfs(v);
+    vector<int> bfsRes = graph.bfs(v);
 
-    for (int i = 0; i < m; ++i) {
-        int a, b;
-        cin >> a >> b;
-        graph[a].push_back(b);
-        graph[b].push_back(a);
-    }
+    for(const int i : dfsRes)
+        cout << i << ' ';
+    cout << '\n';
 
-    for (int i = 1; i <= n; ++i) {
-        sort(graph[i].begin(), graph[i].end());
-    }
-
-    dfs(graph, visited, v);
-    cout << endl;
-
-    fill(visited.begin(), visited.end(), false);
-    bfs(graph, visited, v);
-    cout << endl;
-
-    return 0;
+    for(const int i : bfsRes)
+        cout << i << ' ';
+    cout << '\n';
 }
