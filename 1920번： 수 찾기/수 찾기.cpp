@@ -65,5 +65,6 @@ int main()
     {
         cin >> temp;
         cout << serach(v ,temp) << '\n';
+        // cout << binary_search(v.begin(), v.end(), temp);
     }
 }
