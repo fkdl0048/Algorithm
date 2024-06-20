@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// compare 함수를 만들어서 넣어주기..
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
-bool compare(pair<int, int> a, pair<int, int> b){
-    if (a.second == b.second)
+bool compare(pair<int, int> a, pair<int, int> b)
+{
+    if (a.second == b.second){
         return a.first < b.first;
-    else
-        return a.second < b.second;
+    }
+    return a.second < b.second;
 }
 
 int main()
 {
-    int n;
-    int p1, p2;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    int n, p1, p2;
     vector<pair<int, int>> v;
 
     cin >> n;
@@ -38,6 +40,8 @@ int main()
 
     sort(v.begin(), v.end(), compare);
 
-    for (int i = 0; i < n; i++)
-        cout << v[i].first << ' ' << v[i].second << '\n';
+    for (const auto it : v)
+    {
+        cout << it.first << " " << it.second << '\n';
+    }
 }
