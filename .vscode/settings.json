@@ -3,7 +3,18 @@
         "*.yarnproject": "jsonc",
         "iostream": "cpp",
         "vector": "cpp",
-        "xlocale": "cpp"
+        "xlocale": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
