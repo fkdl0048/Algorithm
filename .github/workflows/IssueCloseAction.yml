@@ -37,7 +37,7 @@ jobs:
             process.exit(0);
           }
 
-          // 정규식 수정: 개행 문자 유무와 상관없이 코드 블록 매칭
+          // 코드 블록 추출
           const codeBlockRegex = /```(?:cpp)?\s*([\s\S]*?)\s*```/gm;
           let code = '';
           let match;
@@ -52,9 +52,10 @@ jobs:
             process.exit(1);
           }
 
-          const sanitizedTitle = title.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9_.-]/g, '');
+          // 파일명과 폴더명에서 소문자 변환을 제거하여 대소문자 유지
+          const sanitizedTitle = title.replace(/ /g, '_').replace(/[^a-zA-Z0-9_.-]/g, '');
           for (const label of labels) {
-            const sanitizedLabel = label.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9_.-]/g, '');
+            const sanitizedLabel = label.replace(/ /g, '_').replace(/[^a-zA-Z0-9_.-]/g, '');
             const folderPath = `${sanitizedLabel}`;
             const filePath = `${folderPath}/${sanitizedTitle}.cpp`;
             fs.mkdirSync(folderPath, { recursive: true });
