@@ -17,54 +17,57 @@ jobs:
       with:
         fetch-depth: 0  # 전체 커밋 기록을 가져옵니다.
 
-    - name: 이슈 정보 가져오기
-      id: issue_data
+    - name: 이슈 정보 가져오기 및 코드 추출
+      id: create_file
       uses: actions/github-script@v6
       with:
         script: |
+          const fs = require('fs');
           const issue = context.payload.issue;
-          core.setOutput('title', issue.title || 'untitled');
-          core.setOutput('body', issue.body || '');
-          core.setOutput('number', issue.number || '');
+          const issueBody = issue.body || '';
+          const title = issue.title || 'untitled';
           const labels = issue.labels.map(label => label.name);
-          core.setOutput('labels', labels.join(','));
-    
-    - name: 라벨이 있는지 확인
-      if: ${{ steps.issue_data.outputs.labels == '' }}
-      run: |
-        echo "이슈에 라벨이 없습니다. 작업을 종료합니다."
-        exit 0
 
-    - name: 이슈 본문에서 코드 추출
-      id: extract_code
-      run: |
-        echo '이슈 본문에서 코드를 추출합니다...'
-        echo "${{ steps.issue_data.outputs.body }}" > issue_body.txt
-        code=$(grep -zoP '```(?:cpp)?\s*\n([\s\S]*?)\n```' issue_body.txt | sed -e 's/```cpp//' -e 's/```//' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
-        if [ -z "$code" ]; then
-          echo "코드 블록을 찾을 수 없습니다. 작업을 종료합니다."
-          exit 1
-        fi
-        echo "$code" > code.cpp
+          console.log('이슈 제목:', title);
+          console.log('이슈 라벨:', labels);
+          console.log('이슈 본문:', issueBody);
 
-    - name: 라벨별로 파일 생성
-      run: |
-        labels="${{ steps.issue_data.outputs.labels }}"
-        IFS=',' read -ra LABEL_ARRAY <<< "$labels"
-        title="${{ steps.issue_data.outputs.title }}"
-        sanitized_title=$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_.-')
-        for label in "${LABEL_ARRAY[@]}"; do
-          sanitized_label=$(echo "$label" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | tr -cd '[:alnum:]_.-')
-          folder="$sanitized_label"
-          mkdir -p "$folder"
-          cp code.cpp "$folder/$sanitized_title.cpp"
-          echo "파일 생성: $folder/$sanitized_title.cpp"
-        done
+          if (labels.length === 0) {
+            console.log('이슈에 라벨이 없습니다. 작업을 종료합니다.');
+            process.exit(0);
+          }
+
+          // 정규식 수정: 코드 블록을 보다 정확하게 매칭
+          const codeBlockRegex = /```(?:cpp)?\n([\s\S]*?)\n```/gm;
+          let code = '';
+          let match;
+          while ((match = codeBlockRegex.exec(issueBody)) !== null) {
+            console.log('추출된 코드 블록:', match[1]);
+            code += match[1].trim() + '\n';
+          }
+
+          if (!code) {
+            console.log('이슈 본문에서 코드 블록을 찾을 수 없습니다.');
+            core.setFailed('코드 블록을 추출하지 못했습니다.');
+            process.exit(1);
+          }
+
+          const sanitizedTitle = title.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9_.-]/g, '');
+          for (const label of labels) {
+            const sanitizedLabel = label.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9_.-]/g, '');
+            const folderPath = `${sanitizedLabel}`;
+            const filePath = `${folderPath}/${sanitizedTitle}.cpp`;
+            fs.mkdirSync(folderPath, { recursive: true });
+            fs.writeFileSync(filePath, code);
+            console.log(`파일 생성: ${filePath}`);
+          }
+
+          core.setOutput('issue_number', issue.number);
 
     - name: 변경 사항 커밋 및 푸시
       uses: EndBug/add-and-commit@v9
       with:
-        message: "이슈 #${{ steps.issue_data.outputs.number }}에서 솔루션 추가"
+        message: "이슈 #${{ steps.create_file.outputs.issue_number }}에서 솔루션 추가"
         add: "*/*.cpp"
         author_name: GitHub Action
         author_email: action@github.com
