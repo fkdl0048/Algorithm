@@ -1,1 +1,0 @@
-# CLASS 2: 마인크래프 - [[18111](https://www.acmicpc.net/problem/18111)]
