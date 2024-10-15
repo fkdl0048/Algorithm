@@ -36,18 +36,28 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          const issueBody = context.payload.issue.body;
-          const codeBlockRegex = /```(?:cpp)?\n([\s\S]*?)\n```/g;
+          const issueBody = context.payload.issue.body || '';
+          console.log('이슈 본문:', issueBody);
+
+          const codeBlockRegex = /```(?:cpp)?\s*([\s\S]*?)\s*```/g;
           let code = '';
           let match;
           while ((match = codeBlockRegex.exec(issueBody)) !== null) {
-            code += match[1] + '\n';
+            console.log('추출된 코드 블록:', match[1]);
+            code += match[1].trim() + '\n';
           }
-          const title = context.payload.issue.title;
+
+          if (!code) {
+            console.log('이슈 본문에서 코드 블록을 찾을 수 없습니다.');
+            code = issueBody.trim(); // 코드 블록이 없을 경우 전체 이슈 본문을 저장
+          }
+
+          const title = context.payload.issue.title || 'untitled';
           const sanitizedTitle = title.toLowerCase().replace(/ /g, '_').replace(/[^a-z0-9_.-]/g, '');
           const filepath = `LeetCode/${sanitizedTitle}.cpp`;
           fs.mkdirSync('LeetCode', { recursive: true });
           fs.writeFileSync(filepath, code);
+          console.log('생성된 파일 경로:', filepath);
           core.setOutput('filepath', filepath);
           core.setOutput('issue_number', context.payload.issue.number);
 
