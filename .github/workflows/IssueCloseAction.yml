@@ -37,8 +37,8 @@ jobs:
             process.exit(0);
           }
 
-          // 정규식 수정: 코드 블록을 보다 정확하게 매칭
-          const codeBlockRegex = /```(?:cpp)?\n([\s\S]*?)\n```/gm;
+          // 정규식 수정: 개행 문자 유무와 상관없이 코드 블록 매칭
+          const codeBlockRegex = /```(?:cpp)?\s*([\s\S]*?)\s*```/gm;
           let code = '';
           let match;
           while ((match = codeBlockRegex.exec(issueBody)) !== null) {
