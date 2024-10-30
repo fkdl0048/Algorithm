@@ -1,10 +1,8 @@
 using System;
+using System.Linq;
 
-public class Example
-{
-    public static void Main()
-    {
-        string input = Console.ReadLine();
-        Console.WriteLine(input);
+public class Solution {
+    public int solution(int[] num_list, int n) {
+        return num_list.Contains(n) ? 1 : 0;
     }
 }
