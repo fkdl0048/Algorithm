@@ -37,30 +37,62 @@ jobs:
             process.exit(0);
           }
 
-          // 코드 블록 추출 (모든 언어의 코드 블록 포함)
-          const codeBlockRegex = /```[\w]*\s*([\s\S]*?)\s*```/gm;
-          let code = '';
+          // 코드 블록 추출 (언어 식별자와 코드 내용 모두 캡처)
+          const codeBlockRegex = /```(\w*)\s*([\s\S]*?)\s*```/gm;
           let match;
+          const codeBlocks = [];
+
           while ((match = codeBlockRegex.exec(issueBody)) !== null) {
-            console.log('추출된 코드 블록:', match[1]);
-            code += match[1].trim() + '\n';
+            const language = match[1].toLowerCase(); // 언어 식별자 (소문자 변환)
+            const code = match[2].trim();
+            console.log(`추출된 코드 블록 (언어: ${language}):\n${code}`);
+            codeBlocks.push({ language, code });
           }
 
-          if (!code) {
+          if (codeBlocks.length === 0) {
             console.log('이슈 본문에서 코드 블록을 찾을 수 없습니다.');
             core.setFailed('코드 블록을 추출하지 못했습니다.');
             process.exit(1);
           }
 
+          // 언어 식별자에 따른 확장자 매핑 (필요에 따라 추가 가능)
+          const extensionMap = {
+            'cpp': 'cpp',
+            'cs': 'cs',
+            'py': 'py',
+            'js': 'js',
+            'java': 'java',
+            'rb': 'rb',
+            'go': 'go',
+            'ts': 'ts',
+            'html': 'html',
+            'css': 'css',
+            // 기타 언어 추가 가능
+          };
+
           // 파일명과 폴더명에서 한글 포함하도록 수정
           const sanitizedTitle = title.replace(/ /g, '_').replace(/[^\p{L}\p{N}_.-]/gu, '');
+
           for (const label of labels) {
             const sanitizedLabel = label.replace(/ /g, '_').replace(/[^\p{L}\p{N}_.-]/gu, '');
             const folderPath = `${sanitizedLabel}`;
-            const filePath = `${folderPath}/${sanitizedTitle}.cpp`;
-            fs.mkdirSync(folderPath, { recursive: true });
-            fs.writeFileSync(filePath, code);
-            console.log(`파일 생성: ${filePath}`);
+
+            // 각 코드 블록에 대해 파일 생성
+            codeBlocks.forEach((block, index) => {
+              let extension = 'txt'; // 기본 확장자
+              if (block.language && extensionMap[block.language]) {
+                extension = extensionMap[block.language];
+              } else if (block.language) {
+                extension = block.language; // 매핑에 없는 경우 언어 식별자를 확장자로 사용
+              }
+
+              // 여러 개의 코드 블록이 있을 경우 파일명을 구분하기 위해 인덱스 추가
+              const fileName = codeBlocks.length > 1 ? `${sanitizedTitle}_${index + 1}.${extension}` : `${sanitizedTitle}.${extension}`;
+              const filePath = `${folderPath}/${fileName}`;
+              fs.mkdirSync(folderPath, { recursive: true });
+              fs.writeFileSync(filePath, block.code);
+              console.log(`파일 생성: ${filePath}`);
+            });
           }
 
           core.setOutput('issue_number', issue.number);
@@ -69,7 +101,7 @@ jobs:
       uses: EndBug/add-and-commit@v9
       with:
         message: "이슈 #${{ steps.create_file.outputs.issue_number }}에서 솔루션 추가"
-        add: "*/*.cpp"
+        add: "*/*.{cpp,cs,py,js,java,rb,go,ts,html,css,txt}"  # 필요한 확장자 추가
         author_name: GitHub Action
         author_email: action@github.com
         committer_name: GitHub Action
