@@ -37,8 +37,8 @@ jobs:
             process.exit(0);
           }
 
-          // 코드 블록 추출
-          const codeBlockRegex = /```(?:cpp)?\s*([\s\S]*?)\s*```/gm;
+          // 코드 블록 추출 (모든 언어의 코드 블록 포함)
+          const codeBlockRegex = /```[\w]*\s*([\s\S]*?)\s*```/gm;
           let code = '';
           let match;
           while ((match = codeBlockRegex.exec(issueBody)) !== null) {
@@ -52,10 +52,10 @@ jobs:
             process.exit(1);
           }
 
-          // 파일명과 폴더명에서 소문자 변환을 제거하여 대소문자 유지
-          const sanitizedTitle = title.replace(/ /g, '_').replace(/[^a-zA-Z0-9_.-]/g, '');
+          // 파일명과 폴더명에서 한글 포함하도록 수정
+          const sanitizedTitle = title.replace(/ /g, '_').replace(/[^\p{L}\p{N}_.-]/gu, '');
           for (const label of labels) {
-            const sanitizedLabel = label.replace(/ /g, '_').replace(/[^a-zA-Z0-9_.-]/g, '');
+            const sanitizedLabel = label.replace(/ /g, '_').replace(/[^\p{L}\p{N}_.-]/gu, '');
             const folderPath = `${sanitizedLabel}`;
             const filePath = `${folderPath}/${sanitizedTitle}.cpp`;
             fs.mkdirSync(folderPath, { recursive: true });
