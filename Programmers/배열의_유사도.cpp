@@ -13,6 +13,5 @@ int solution(vector<string> s1, vector<string> s2) {
             answer++;
         }
     }
-    
     return answer;
 }
