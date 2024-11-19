@@ -4,8 +4,7 @@
 
 using namespace std;
 
-string solution(string my_string, int s, int e) {
-    reverse(my_string.begin() + s, my_string.begin() + e + 1);
-    
+string solution(string my_string) {
+    reverse(my_string.begin(), my_string.end());
     return my_string;
 }
