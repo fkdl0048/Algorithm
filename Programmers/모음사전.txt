@@ -1,0 +1,32 @@
+++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int result = 0;
+int cnt = -1;
+string aeiou = "AEIOU";
+
+void dfs(string target, string currentWord) {
+    cnt++;
+    
+    if (target == currentWord) {
+        result = cnt;
+        return;
+    }
+    
+    if (currentWord.length() >= 5) {
+        return;
+    }
+    
+    for (int i = 0; i < 5; i++) {
+        dfs(target, currentWord + aeiou[i]);
+    }
+}
+
+int solution(string word) {
+    dfs(word, "");
+    
+    return result;
+}
