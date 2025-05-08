@@ -1,0 +1,24 @@
+++
+#include <string>
+#include <vector>
+
+using namespace std;
+
+string solution(string number, int k) {
+    string result;
+    result.reserve(number.size());
+    
+    // 1) 숫자를 순회하며, 더 큰 숫자가 나오면
+    //    스택(문자열)의 뒷부분을 제거해가며 최적화
+    for (char c : number) {
+        while (k > 0 && !result.empty() && result.back() < c) {
+            result.pop_back();
+            --k;
+        }
+        result.push_back(c);
+    }
+    
+    // 2) 아직 k가 남아 있으면 뒤에서부터 제거
+    result.resize(result.size() - k);
+    return result;
+}
