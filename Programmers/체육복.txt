@@ -1,0 +1,32 @@
+++
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int solution(int n, vector<int> lost, vector<int> reserve) {
+    vector<int> total(n, 1);
+    for (int p : reserve) total[p - 1]++;
+    for (int p : lost)    total[p - 1]--;
+
+    for (int i = 0; i < n; i++) {
+        if (total[i] == 0) {
+            // 왼쪽부터 빌려보기 (i-1 ≥ 0 인지 먼저 검사)
+            if (i > 0 && total[i - 1] == 2) {
+                total[i - 1]--;
+                total[i]++;
+            }
+            // 아니면 오른쪽에서 빌려보기 (i+1 < n 인지 먼저 검사)
+            else if (i < n - 1 && total[i + 1] == 2) {
+                total[i]++;
+                total[i + 1]--;
+            }
+        }
+    }
+
+    int cnt = 0;
+    for (int x : total)
+        if (x > 0) cnt++;
+    return cnt;
+}
